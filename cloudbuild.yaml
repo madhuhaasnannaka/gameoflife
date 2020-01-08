@@ -13,6 +13,7 @@ steps:
   - '-Dsonar.host.url=https://sonarcloud.io'
   - '-Dsonar.login=3502bd1b7a0cc9d8679c51b63c1003f4458e22ea'
   - '-Dsonar.sources=.'
+  - '-Dsonar.projectKey=project'
   dir: '.'
 - name: 'gcr.io/cloud-builders/gke-deploy:stable'
   args:
