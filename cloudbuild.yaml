@@ -7,9 +7,11 @@ steps:
   args: ["push", "gcr.io/$PROJECT_ID/gameoflife:$COMMIT_SHA"]
 - name: 'gcr.io/cloud-builders/docker'
   args: ["push", "gcr.io/$PROJECT_ID/gameoflife:latest"]
-- name: 'gcr.io/cloud-builders/mvn:3.5.0-jdk-8'
+- name: 'gcr.io/$PROJECT_ID/sonar-scanner'
   args:
-    - 'sonar:sonar'
+    - '-Dsonar.host.url=https://sonarcloud.io'
+    - '-Dsonar.login=3502bd1b7a0cc9d8679c51b63c1003f4458e22ea'
+    - '-Dsonar.sources=.'
 - name: 'gcr.io/cloud-builders/gke-deploy:stable'
   args:
   - run
