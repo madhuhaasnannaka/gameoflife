@@ -8,7 +8,24 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ["push", "gcr.io/$PROJECT_ID/gameoflife:latest"]
 - name: 'gcr.io/cloud-builders/mvn:3.5.0-jdk-8'
-  args: ["sonar:sonar", "-Dsonar.host.url=https://sonarcloud.io", "dir=.","-Dsonar.login=8e82f9c5b979651cfc8274ef93f1d2adc1f47c34"]
+  args: 
+   - '-Dsonar.projectKey=CI_DEMO_SONAR'
+   - '-Dsonar.projectName=GOL'
+   - '-Dsonar.projectVersion=1.0'
+   - '-Dsonar.web.host=https://sonarcloud.io'
+   - '-Dsonar.login=3502bd1b7a0cc9d8679c51b63c1003f4458e22ea'
+#sonar.web.port=9000
+# Comma-separated paths to directories with sources (required)
+# Language
+   - '-Dsonar.language=java'
+# Comma-separated paths to directories with tests
+   - '-Dsonar.tests=src/test/java'
+# Comma-separated paths to directories containing the compiled bytecode files corresponding to your source files
+   - '-Dsonar.java.binaries=target/classes'
+# Tells SonarQube where the unit tests code coverage report is
+   - '-Dsonar.jacoco.reportPath=target/jacoco.exec'
+# Encoding of the source files
+   - '-Dsonar.sourceEncoding=UTF-8'
 - name: 'gcr.io/cloud-builders/gke-deploy:stable'
   args:
   - run
