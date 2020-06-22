@@ -13,7 +13,7 @@ steps:
    - '-Dsonar.projectName=GOL'
    - '-Dsonar.projectVersion=1.0'
    - '-Dsonar.web.host=https://sonarcloud.io'
-   - '-Dsonar.login=3502bd1b7a0cc9d8679c51b63c1003f4458e22ea'
+   - '-Dsonar.login=5a60148d3be9bb57ac49578f30e6eb1606d9f822'
 #sonar.web.port=9000
 # Comma-separated paths to directories with sources (required)
 # Language
