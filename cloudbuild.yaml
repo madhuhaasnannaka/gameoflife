@@ -7,32 +7,32 @@ steps:
   args: ["push", "gcr.io/$PROJECT_ID/gameoflife:$COMMIT_SHA"]
 - name: 'gcr.io/cloud-builders/docker'
   args: ["push", "gcr.io/$PROJECT_ID/gameoflife:latest"]
-- name: 'gcr.io/cloud-builders/mvn:3.5.0-jdk-8'
-  args: 
-   - 'sonar sonar'
-   - '-Dsonar.projectKey=CI_DEMO_SONAR'
-   - '-Dsonar.projectName=GOL'
-   - '-Dsonar.projectVersion=1.0'
-   - '-Dsonar.web.host=https://sonarcloud.io'
-   - '-Dsonar.login=5a60148d3be9bb57ac49578f30e6eb1606d9f822'
+#- name: 'gcr.io/cloud-builders/mvn:3.5.0-jdk-8'
+#  args: 
+ #  - 'sonar sonar'
+  # - '-Dsonar.projectKey=CI_DEMO_SONAR'
+ #  - '-Dsonar.projectName=GOL'
+ #  - '-Dsonar.projectVersion=1.0'
+  # - '-Dsonar.web.host=https://sonarcloud.io'
+  # - '-Dsonar.login=5a60148d3be9bb57ac49578f30e6eb1606d9f822'
 #sonar.web.port=9000
 # Comma-separated paths to directories with sources (required)
 # Language
-   - '-Dsonar.language=java'
+  # - '-Dsonar.language=java'
 # Comma-separated paths to directories with tests
-   - '-Dsonar.tests=src/test/java'
+  # - '-Dsonar.tests=src/test/java'
 # Comma-separated paths to directories containing the compiled bytecode files corresponding to your source files
-   - '-Dsonar.java.binaries=target/classes'
+  # - '-Dsonar.java.binaries=target/classes'
 # Tells SonarQube where the unit tests code coverage report is
-   - '-Dsonar.jacoco.reportPath=target/jacoco.exec'
+  # - '-Dsonar.jacoco.reportPath=target/jacoco.exec'
 # Encoding of the source files
-   - '-Dsonar.sourceEncoding=UTF-8'
+ #  - '-Dsonar.sourceEncoding=UTF-8'
 - name: 'gcr.io/cloud-builders/gke-deploy:stable'
   args:
   - run
   - --image=gcr.io/$PROJECT_ID/gameoflife:latest
-  - --location=us-central1-a
-  - --cluster=standard-cluster-2
+  - --location=us-central1-c
+  - --cluster=cluster-1
   - --app=gameoflife
   - --expose=8080
   - --namespace=default
